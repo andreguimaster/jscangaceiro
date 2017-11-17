@@ -1,15 +1,14 @@
 class Negociacoes {
     
-    constructor(contexto, armadilha) {
+    constructor(armadilha) {
         this._negociacoes = [];
         this._armadilha = armadilha;
-        this._contexto = contexto;
         Object.freeze(this._negociacoes);
     }
     
     adiciona(negociacao) {
         this._negociacoes.push(negociacao);
-        this._armadilha.call(this._contexto, this);
+        this._armadilha(this);
     }
 
     paraArray() {
@@ -24,6 +23,6 @@ class Negociacoes {
 
     esvazia() {
         this._negociacoes.length = 0;
-        this._armadilha.call(this._contexto, this);
+        this._armadilha(this);
     }
 }
