@@ -25,4 +25,12 @@ class Negociacao {
         return this._valor;
     }
 
+    equals(negociacao) {
+        return this.data.getDate() == negociacao.getDate()
+        && this.data.getMonth() == negociacao.getMonth()
+        && this.data.getFullYear() == negociacao.getFullYear()
+        && this.quantidade == negociacao.quantidade
+        &&  this.valor == negociacao.valor;
+    }
+
 }
