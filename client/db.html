@@ -26,7 +26,15 @@
         };
         function adiciona() {
             const negociacao = new Negociacao(new Date(), 200, 1);
-            const transaction = connection.objectStore('negociacoes');
+            const transaction = connection.transaction(['negociacoes'], 'readwrite');
+            const store = transaction.objectStore('negociacoes');
+            const request = store.add(negociacao);
+            request.onsuccess = (e) => {
+                console.log('negociação salva com sucesso');
+            };
+            request.onerror = (e) => {
+                console.log('não foi possível salvar a negociação');
+            };
         }
     </script>
 </body>
