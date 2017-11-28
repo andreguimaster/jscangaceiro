@@ -26,14 +26,43 @@
         };
         function adiciona() {
             const negociacao = new Negociacao(new Date(), 200, 1);
-            const transaction = connection.transaction(['negociacoes'], 'readwrite');
-            const store = transaction.objectStore('negociacoes');
-            const request = store.add(negociacao);
+            const request = connection
+            .transaction(['negociacoes'], 'readwrite')
+            .objectStore('negociacoes')
+            .add(negociacao);
+
             request.onsuccess = (e) => {
                 console.log('negociação salva com sucesso');
             };
             request.onerror = (e) => {
                 console.log('não foi possível salvar a negociação');
+            };
+        }
+        function listaTodos() {
+            const negociacoes = [];
+
+            const cursor  = connection
+            .transaction(['negociacoes'],'readwrite')
+            .objectStore('negociacoes')
+            .openCursor();
+
+            cursor.onsuccess = (e) => {
+                const atual = e.target.result;
+                if(atual){
+                    const negociacao = new Negociacao(
+                        atual.value._data,
+                        atual.value._quantidade,
+                        atual.value._valor
+                    );
+                    negociacoes.push(negociacao);
+                    atual.continue();
+                } else {
+                    console.log(negociacoes);
+                }
+            };
+
+            cursor.onerror = (e) => {
+                console.log('Error:'+e.target.error.name);
             };
         }
     </script>
