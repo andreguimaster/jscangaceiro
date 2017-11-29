@@ -1,4 +1,4 @@
-import { ApplicationException } from './ApplicationException.js';
+import { ApplicationException } from '../../util/ApplicationException.js';
 
 export class DataInvalidaException extends ApplicationException {
     constructor() {
