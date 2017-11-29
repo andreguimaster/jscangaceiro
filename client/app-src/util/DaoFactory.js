@@ -1,4 +1,8 @@
-class DaoFactory {
+import { ConnectionFactory } from './ConnectionFactory.js';
+import { NegociacaoDao } from '../domain/negociacao/NegociacaoDao.js';
+
+
+export class DaoFactory {
     
     constructor() {
         throw new Error('Não é possível criar instâncias dessa classe');
