@@ -8,9 +8,8 @@ export class DaoFactory {
         throw new Error('Não é possível criar instâncias dessa classe');
     }
 
-    static getNegociacaoDao() {
-        return ConnectionFactory
-            .getConnection()
-            .then(conn => new NegociacaoDao(conn));
+    static async getNegociacaoDao() {
+        const conn = await ConnectionFactory.getConnection();
+        return new NegociacaoDao(conn);
     }
 }
