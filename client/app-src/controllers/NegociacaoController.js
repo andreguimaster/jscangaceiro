@@ -1,6 +1,6 @@
 import { Negociacoes, NegociacaoService, Negociacao } from '../domain/index.js';
 import { NegociacoesView, MensagemView, Mensagem, DateConverter } from '../ui/index.js';
-import { DaoFactory, Bind, DataInvalidaException, getExceptionMessage, debounce, controller } from '../util/index.js';
+import { DaoFactory, Bind, DataInvalidaException, getExceptionMessage, debounce, controller, bindEvent } from '../util/index.js';
 
 @controller('#data', '#quantidade', '#valor')
 export class NegociacaoController {
@@ -37,6 +37,7 @@ export class NegociacaoController {
         }
     }
 
+    @bindEvent('submit', '.form')
     @debounce()
     async adiciona(event) {
         try {
@@ -67,6 +68,7 @@ export class NegociacaoController {
         );
     }
 
+    @bindEvent('click', '#botao-apaga')
     async apaga() {
         try{
             const dao = await DaoFactory.getNegociacaoDao();
@@ -78,6 +80,7 @@ export class NegociacaoController {
         }
     }
 
+    @bindEvent('click', '#botao-importa')
     @debounce(1500)
     async importaNegociacoes () {
         try {
