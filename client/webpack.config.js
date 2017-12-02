@@ -6,7 +6,20 @@ const optimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const webpack = require('webpack');
 
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 let plugins = [];
+
+plugins.push(new HtmlWebpackPlugin({
+    hash: true,
+    minify: {
+        html5: true,
+        collapseWhitespace: true,
+        removeComments: true,
+    },
+    filename: 'index.html',
+    template: __dirname + '/main.html',
+}));
 
 plugins.push(
     new webpack.optimize.CommonsChunkPlugin({
@@ -48,7 +61,6 @@ module.exports = {
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
-        publicPath: "dist"
     },
     module: {
         rules: [
