@@ -2,3 +2,4 @@
 .vscode/*
 client/app/*
 client/node_modules/*
+client/dist/*
