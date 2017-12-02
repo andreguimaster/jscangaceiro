@@ -1,3 +1,8 @@
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap-theme.css';
+
+import '../css/meucss.css';
+
 import { NegociacaoController } from './controllers/NegociacaoController.js';
 const controller = new NegociacaoController();
 
@@ -18,7 +23,7 @@ const config = {
     body
 };
 
-fetch('/negociacoes', config)
+fetch('http://localhost:3000/negociacoes', config)
     .then((res)=>res.json())
     .then((dados)=>console.log(dados));
 */

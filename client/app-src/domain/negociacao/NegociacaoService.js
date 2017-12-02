@@ -2,6 +2,8 @@ import { HttpService } from '../../util/HttpService.js';
 import { Negociacao } from './Negociacao.js';
 import { ApplicationException } from '../../util/ApplicationException.js';
 
+const context = 'http://localhost:3000/'
+
 export class NegociacaoService {
     
     constructor(){
@@ -9,7 +11,7 @@ export class NegociacaoService {
     }
 
     async obtemNegociacoesDaSemana() {
-        return this._http.get('negociacoes/semana').then(
+        return this._http.get(`${context}negociacoes/semana`).then(
             (dados) => {
                 console.log(dados);
                 const negociacoes = dados.map(
@@ -27,7 +29,7 @@ export class NegociacaoService {
     }
 
     async obtemNegociacoesDaSemanaAnterior() {
-        return this._http.get('negociacoes/anterior').then(
+        return this._http.get(`${context}negociacoes/anterior`).then(
             (dados) => {
                 console.log(dados);
                 const negociacoes = dados.map(
@@ -45,7 +47,7 @@ export class NegociacaoService {
     }
 
     async obtemNegociacoesDaSemanaRetrasada() {
-        return this._http.get('negociacoes/retrasada').then(
+        return this._http.get(`${context}negociacoes/retrasada`).then(
             (dados) => {
                 console.log(dados);
                 const negociacoes = dados.map(
