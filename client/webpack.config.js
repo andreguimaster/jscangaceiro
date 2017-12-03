@@ -40,7 +40,7 @@ plugins.push(
 );
 
 if(process.env.NODE_ENV == 'production'){
-    plugins.push(webpack.optimize.ModuleConcatenationPlugin());
+    plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
     plugins.push(new babiliPlugin());
     plugins.push(new optimizeCSSAssetsPlugin({
       cssProcessor: require('cssnano'),
