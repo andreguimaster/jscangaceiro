@@ -25,7 +25,7 @@ const config = {
     body
 };
 
-fetch('http://localhost:3000/negociacoes', config)
+fetch(`${SERVICE_URL}/negociacoes`, config)
     .then((res)=>res.json())
     .then((dados)=>console.log(dados));
 */
